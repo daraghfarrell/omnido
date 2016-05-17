@@ -11,6 +11,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
+apply plugin: 'application'
 
 jar {
     baseName = 'gs-spring-boot'
@@ -25,6 +26,8 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
+    compile("org.springframework.boot:spring-boot-devtools")
+
     compile("org.springframework.boot:spring-boot-starter-web")
     // tag::actuator[]
     compile("org.springframework.boot:spring-boot-starter-actuator")
@@ -36,4 +39,11 @@ dependencies {
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
+}
+
+apply plugin: 'java'
+
+task runApp(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'com.omnido.app.Application'
 }
