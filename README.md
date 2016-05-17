@@ -4,6 +4,9 @@
 <p>Use <b><i>gradle build</i></b> to build and test
 <p><b><i>gradle bootRun</i></b> to run the app.
 
-<b>Definition of "do"</b>
+<p>Definition of "do"</p>
 transitive verb
-1:  to bring to pass :  carry out <do another's wishes>
+</p>1:  to bring to pass</p>
+
+<p>Definition of "omni"</p>
+: all : in all ways, places, etc. : without limits
