@@ -4,7 +4,7 @@
 <p>Use <b><i>gradle build</i></b> to build and test
 <p><b><i>gradle bootRun</i></b> to run the app.
 
-#
+# ..
 <p>Definition of "do"</p>
 transitive verb
 </p>1:  to bring to pass</p>
