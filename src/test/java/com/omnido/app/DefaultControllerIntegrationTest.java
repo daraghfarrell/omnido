@@ -44,6 +44,6 @@ public class DefaultControllerIntegrationTest {
 	@Test
 	public void testAnytodo() throws Exception {
 		ResponseEntity<String> response = template.getForEntity(base.toString()+"/anytodo", String.class);
-		assertThat(response.getBody(), equalTo("anytodo"));
+		assertThat(response.getBody(), equalTo("{\"id\":1,\"name\":\"anytodo\"}"));
 	}
 }

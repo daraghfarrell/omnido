@@ -1,5 +1,6 @@
 package com.omnido.app;
 
+import com.omnido.model.Anytodo;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -12,7 +13,7 @@ public class DefaultController {
     }
 
     @RequestMapping("/anytodo")
-    public String anytodo() {
-        return "anytodo";
+    public Anytodo anytodo() {
+        return new Anytodo(1, "anytodo");
     }
 }
