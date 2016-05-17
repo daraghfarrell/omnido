@@ -4,7 +4,7 @@
 <p>Use <b><i>gradle build</i></b> to build and test
 <p><b><i>gradle bootRun</i></b> to run the app.
 
-<h2>Defnition</h2>
+<h3>Definition</h3>
 <p>Definition of "do"</p>
 </p>to bring to pass</p>
 
