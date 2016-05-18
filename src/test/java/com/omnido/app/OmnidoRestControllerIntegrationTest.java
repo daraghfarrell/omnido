@@ -1,5 +1,7 @@
 package com.omnido.app;
 
+import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
 
@@ -21,7 +23,7 @@ import org.springframework.web.client.RestTemplate;
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
 @IntegrationTest({"server.port=0"})
-public class DefaultControllerIntegrationTest {
+public class OmnidoRestControllerIntegrationTest {
 
     @Value("${local.server.port}")
     private int port;
@@ -36,13 +38,13 @@ public class DefaultControllerIntegrationTest {
 	}
 
 	@Test
-	public void testServer() throws Exception {
-		ResponseEntity<String> response = template.getForEntity(base.toString(), String.class);
-		assertThat(response.getBody(), equalTo("Welcome :-)"));
+	public void testWebContent() throws Exception {
+		ResponseEntity<String> response = template.getForEntity(base.toString()+"/greeting", String.class);
+		assertThat(response.getBody(), containsString("Hello - Welcome to Omnido!"));
 	}
 
 	@Test
-	public void testAnytodo() throws Exception {
+	public void testAnytodoService() throws Exception {
 		ResponseEntity<String> response = template.getForEntity(base.toString()+"/anytodo", String.class);
 		assertThat(response.getBody(), equalTo("{\"id\":1,\"name\":\"anytodo\"}"));
 	}
