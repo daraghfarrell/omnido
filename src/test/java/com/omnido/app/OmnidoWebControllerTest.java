@@ -20,8 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-//@SpringApplicationConfiguration(classes = MockServletContext.class)
-@ContextConfiguration(classes = OmnidoWebController.class)
+@SpringApplicationConfiguration(classes = MockServletContext.class)
 @WebAppConfiguration
 public class OmnidoWebControllerTest {
 
@@ -32,8 +31,7 @@ public class OmnidoWebControllerTest {
 
 	@Before
 	public void setUp() throws Exception {
-//		mvc = MockMvcBuilders.standaloneSetup(new OmnidoWebController()).build();
-        mvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
+		mvc = MockMvcBuilders.standaloneSetup(new OmnidoWebController()).build();
 	}
 
     @Test
