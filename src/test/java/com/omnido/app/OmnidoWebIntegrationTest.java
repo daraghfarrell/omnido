@@ -23,7 +23,7 @@ import org.springframework.web.client.RestTemplate;
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
 @IntegrationTest({"server.port=0"})
-public class OmnidoRestControllerIntegrationTest {
+public class OmnidoWebIntegrationTest {
 
     @Value("${local.server.port}")
     private int port;
@@ -38,9 +38,27 @@ public class OmnidoRestControllerIntegrationTest {
 	}
 
 	@Test
-	public void testWebContent() throws Exception {
+	public void testIndex() throws Exception {
+		ResponseEntity<String> response = template.getForEntity(base.toString()+"/", String.class);
+		assertThat(response.getBody(), containsString("Hello - Welcome to Omnido!"));
+	}
+
+	@Test
+	public void testBlankWebGreeting() throws Exception {
 		ResponseEntity<String> response = template.getForEntity(base.toString()+"/greeting", String.class);
 		assertThat(response.getBody(), containsString("Hello - Welcome to Omnido!"));
+	}
+
+	@Test
+	public void testNamedWebGreetingUsingThymeleaf() throws Exception {
+		ResponseEntity<String> response = template.getForEntity(base.toString()+"/greeting?name=Daragh Farrell", String.class);
+		assertThat(response.getBody(), containsString("Hello - Welcome to Omnido! Daragh Farrell"));
+	}
+
+	@Test
+	public void testGraphFound() throws Exception {
+		ResponseEntity<String> response = template.getForEntity(base.toString()+"/graph", String.class);
+		assertThat(response.getBody(), containsString("Omnido Graph"));
 	}
 
 	@Test
