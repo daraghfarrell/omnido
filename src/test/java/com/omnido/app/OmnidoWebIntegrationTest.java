@@ -66,4 +66,10 @@ public class OmnidoWebIntegrationTest {
 		ResponseEntity<String> response = template.getForEntity(base.toString()+"/anytodo", String.class);
 		assertThat(response.getBody(), equalTo("{\"id\":1,\"name\":\"anytodo\"}"));
 	}
+
+	@Test
+	public void testTestJson() throws Exception {
+		ResponseEntity<String> response = template.getForEntity(base.toString()+ "/static/test.json", String.class);
+		assertThat(response.getBody(), containsString("{\"id\": \"Myriel\", \"group\": 1}"));
+	}
 }
