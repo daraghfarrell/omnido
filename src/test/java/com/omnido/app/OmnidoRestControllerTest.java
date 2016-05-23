@@ -39,6 +39,6 @@ public class OmnidoRestControllerTest {
 	public void testAnytodoService() throws Exception {
 		mvc.perform(MockMvcRequestBuilders.get("/anytodo").accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
-				.andExpect(content().string(equalTo("{\"id\":1,\"name\":\"anytodo\"}")));
+				.andExpect(content().string(containsString("{\"id\":1")));
 	}
 }

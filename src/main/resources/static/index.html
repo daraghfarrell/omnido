@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>Hello Omnido</title>
+    <title>Omnido - OrganiseAnyThing</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
     <style type="text/css">
         [ng\:cloak], [ng-cloak], .ng-cloak {
@@ -12,11 +12,12 @@
 
 <body ng-app="graph">
 <div class="container">
-    <h1>Greeting123</h1>
+    <h1>Anytodo:</h1>
     <div ng-controller="home as home" ng-cloak class="ng-cloak">
-        <p>Anytodo Id is: {{home.greeting.id}}</p>
-        <p>Anytodo Name is: {{home.greeting.name}}</p>
-        <p>Anytodo description: {{home.greeting.name}}</p>
+        <p>Id is: {{home.anytodo.id}}</p>
+        <p>UUID is: {{home.anytodo.uuid}}</p>
+        <p>Name is: {{home.anytodo.name}}</p>
+        <p>description: {{home.anytodo.name}}</p>
     </div>
 </div>
 <script src="js/graph.js"></script>

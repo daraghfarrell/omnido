@@ -38,13 +38,13 @@ public class OmnidoWebIntegrationTest {
     @Test
     public void testSlashAutomapsToIndex() throws Exception {
         ResponseEntity<String> response = template.getForEntity(base.toString()+"/", String.class);
-        assertThat(response.getBody(), containsString("Hello Omnido"));
+        assertThat(response.getBody(), containsString("Omnido - OrganiseAnyThing"));
     }
 
     @Test
     public void testIndexIsFound() throws Exception {
         ResponseEntity<String> response = template.getForEntity(base.toString()+"/index.html", String.class);
-        assertThat(response.getBody(), containsString("Hello Omnido"));
+        assertThat(response.getBody(), containsString("Omnido - OrganiseAnyThing"));
     }
 
 	@Test
