@@ -58,10 +58,4 @@ public class OmnidoWebIntegrationTest {
         ResponseEntity<String> response = template.getForEntity(base.toString()+"/index.html", String.class);
         assertFalse(response.getBody().contains("\"Hello World\""));
     }
-
-    @Test
-    public void testGraphPageIsFound() throws Exception {
-        ResponseEntity<String> response = template.getForEntity(base.toString()+"/graph.html", String.class);
-        assertThat(response.getBody(), containsString("Omnido Graph"));
-    }
 }

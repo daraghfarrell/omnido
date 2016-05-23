@@ -7,9 +7,25 @@ public class Anytodo {
 
     long id;
     String name;
+    String description;
+
+    public Anytodo(long i, String anytodo, String desc) {
+        this.id = i;
+        this.name = anytodo;
+        this.description = desc;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public long getId() {
         return id;
+
     }
 
     public void setId(long id) {
@@ -24,8 +40,4 @@ public class Anytodo {
         this.name = name;
     }
 
-    public Anytodo(long i, String anytodo) {
-        this.id = i;
-        this.name = anytodo;
-    }
 }
