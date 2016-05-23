@@ -1,12 +1,5 @@
 package com.omnido.app;
 
-import static org.hamcrest.Matchers.contains;
-import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assert.assertThat;
-
-import java.net.URL;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,7 +10,12 @@ import org.springframework.boot.test.TestRestTemplate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.web.client.RestTemplate;
+
+import java.net.URL;
+
+import static junit.framework.TestCase.assertFalse;
+import static org.hamcrest.Matchers.containsString;
+import static org.junit.Assert.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
@@ -29,7 +27,7 @@ public class OmnidoWebIntegrationTest {
     private int port;
 
 	private URL base;
-	private RestTemplate template;
+	private TestRestTemplate template;
 
 	@Before
 	public void setUp() throws Exception {
@@ -37,39 +35,33 @@ public class OmnidoWebIntegrationTest {
 		template = new TestRestTemplate();
 	}
 
-	@Test
-	public void testIndex() throws Exception {
-		ResponseEntity<String> response = template.getForEntity(base.toString()+"/", String.class);
-		assertThat(response.getBody(), containsString("Hello - Welcome to Omnido!"));
-	}
+    @Test
+    public void testSlashAutomapsToIndex() throws Exception {
+        ResponseEntity<String> response = template.getForEntity(base.toString()+"/", String.class);
+        assertThat(response.getBody(), containsString("Hello Omnido"));
+    }
+
+    @Test
+    public void testIndexIsFound() throws Exception {
+        ResponseEntity<String> response = template.getForEntity(base.toString()+"/index.html", String.class);
+        assertThat(response.getBody(), containsString("Hello Omnido"));
+    }
 
 	@Test
-	public void testBlankWebGreeting() throws Exception {
-		ResponseEntity<String> response = template.getForEntity(base.toString()+"/greeting", String.class);
-		assertThat(response.getBody(), containsString("Hello - Welcome to Omnido!"));
-	}
-
-	@Test
-	public void testNamedWebGreetingUsingThymeleaf() throws Exception {
-		ResponseEntity<String> response = template.getForEntity(base.toString()+"/greeting?name=Daragh Farrell", String.class);
-		assertThat(response.getBody(), containsString("Hello - Welcome to Omnido! Daragh Farrell"));
-	}
-
-	@Test
-	public void testGraphFound() throws Exception {
-		ResponseEntity<String> response = template.getForEntity(base.toString()+"/graph", String.class);
-		assertThat(response.getBody(), containsString("Omnido Graph"));
-	}
-
-	@Test
-	public void testAnytodoService() throws Exception {
-		ResponseEntity<String> response = template.getForEntity(base.toString()+"/anytodo", String.class);
-		assertThat(response.getBody(), equalTo("{\"id\":1,\"name\":\"anytodo\"}"));
-	}
-
-	@Test
-	public void testTestJson() throws Exception {
-		ResponseEntity<String> response = template.getForEntity(base.toString()+ "/static/test.json", String.class);
+	public void testTestJsonDataIsFound() throws Exception {
+		ResponseEntity<String> response = template.getForEntity(base.toString()+ "/test.json", String.class);
 		assertThat(response.getBody(), containsString("{\"id\": \"Myriel\", \"group\": 1}"));
 	}
+
+    @Test
+    public void testAppGreetingFailsAsItRelysOnJavascript() throws Exception {
+        ResponseEntity<String> response = template.getForEntity(base.toString()+"/index.html", String.class);
+        assertFalse(response.getBody().contains("\"Hello World\""));
+    }
+
+    @Test
+    public void testGraphPageIsFound() throws Exception {
+        ResponseEntity<String> response = template.getForEntity(base.toString()+"/graph.html", String.class);
+        assertThat(response.getBody(), containsString("Omnido Graph"));
+    }
 }

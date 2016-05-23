@@ -25,7 +25,8 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version:'1.3.5.RELEASE'
+// uncomment to add security to boot app
+//    compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version:'1.3.5.RELEASE'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'1.3.5.RELEASE'
     compile("org.springframework.boot:spring-boot-devtools")
     testCompile(group: 'org.springframework.boot', name: 'spring-boot-starter-test', version:'1.3.5.RELEASE') {
@@ -40,6 +41,10 @@ task wrapper(type: Wrapper) {
 }
 
 apply plugin: 'java'
+
+bootRun {
+    addResources = true
+}
 
 task runApp(type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
