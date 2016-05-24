@@ -68,3 +68,16 @@ karma {
     frameworks = ['jasmine'] // <5>
     reporters = ['junit'] // <6>
 }
+
+karma {
+    profile('default')  {
+        libraryBases = ['**/libs/']
+        libraryFiles = ['jquery.js', 'lib1.js'] // <1>
+
+        sourceBases = ['src/', 'app/']
+        sourceFiles = ['source1.js', '**/*.js'] // <2>
+
+        testBases = ['tests/']
+        testFiles = ['**/*test.js'] // <3>
+    }
+}
