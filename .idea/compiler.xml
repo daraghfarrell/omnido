@@ -27,6 +27,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="omnido" target="1.8" />
+      <module name="omnido_jasmine" target="1.8" />
       <module name="omnido_main" target="1.8" />
       <module name="omnido_test" target="1.8" />
     </bytecodeTargetLevel>

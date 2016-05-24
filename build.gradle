@@ -1,5 +1,6 @@
 buildscript {
     repositories {
+        mavenLocal()
         mavenCentral()
     }
     dependencies {
@@ -12,8 +13,9 @@ apply plugin: 'idea'
 apply plugin: 'spring-boot'
 apply plugin: 'application'
 
+
 jar {
-    baseName = 'gs-spring-boot'
+    baseName = 'omnido'
     version =  '0.1.0'
 }
 
@@ -25,7 +27,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-// uncomment to add security to boot app
+// uncomment next line to add security to boot app - but will require user/pass for all resources
 //    compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version:'1.3.5.RELEASE'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'1.3.5.RELEASE'
     compile("org.springframework.boot:spring-boot-devtools")
@@ -40,8 +42,6 @@ task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
 }
 
-apply plugin: 'java'
-
 bootRun {
     addResources = true
 }
@@ -49,4 +49,22 @@ bootRun {
 task runApp(type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
     main = 'com.omnido.app.Application'
+}
+
+bootRepackage {
+    mainClass = 'com.omnido.app.Application'
+}
+
+plugins {
+    id 'com.craigburke.karma' version '1.4.3'
+}
+
+karma {
+    basePath = 'src/assets' // <1>
+    colors = true // <2>
+    profile 'angularJS' // <3>
+
+    browsers = ['PhantomJS'] // <4>
+    frameworks = ['jasmine'] // <5>
+    reporters = ['junit'] // <6>
 }
