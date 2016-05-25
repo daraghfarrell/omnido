@@ -8,6 +8,11 @@ buildscript {
     }
 }
 
+
+//plugins {
+//    id 'com.craigburke.karma' version '1.4.3'
+//}
+
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
@@ -54,30 +59,26 @@ task runApp(type: JavaExec) {
 bootRepackage {
     mainClass = 'com.omnido.app.Application'
 }
-
-plugins {
-    id 'com.craigburke.karma' version '1.4.3'
-}
-
-karma {
-    basePath = 'src/assets' // <1>
-    colors = true // <2>
-    profile 'angularJS' // <3>
-
-    browsers = ['PhantomJS'] // <4>
-    frameworks = ['jasmine'] // <5>
-    reporters = ['junit'] // <6>
-}
-
-karma {
-    profile('default')  {
-        libraryBases = ['**/libs/']
-        libraryFiles = ['jquery.js', 'lib1.js'] // <1>
-
-        sourceBases = ['src/', 'app/']
-        sourceFiles = ['source1.js', '**/*.js'] // <2>
-
-        testBases = ['tests/']
-        testFiles = ['**/*test.js'] // <3>
-    }
-}
+//
+//karma {
+//    basePath = 'src/assets' // <1>
+//    colors = true // <2>
+//    profile 'angularJS' // <3>
+//
+//    browsers = ['PhantomJS'] // <4>
+//    frameworks = ['jasmine'] // <5>
+//    reporters = ['junit'] // <6>
+//}
+//
+//karma {
+//    profile('default')  {
+//        libraryBases = ['**/libs/']
+//        libraryFiles = ['jquery.js', 'lib1.js'] // <1>
+//
+//        sourceBases = ['src/', 'app/']
+//        sourceFiles = ['source1.js', '**/*.js'] // <2>
+//
+//        testBases = ['tests/']
+//        testFiles = ['**/*test.js'] // <3>
+//    }
+//}
