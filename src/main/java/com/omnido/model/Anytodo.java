@@ -12,11 +12,14 @@ public class Anytodo {
     String name;
     String description;
 
-    public Anytodo(long id, UUID uuid, String anytodo, String desc) {
+    long numberOfLinks;
+
+    public Anytodo(long id, UUID uuid, String anytodo, String desc, long numberOfLinks) {
         this.id = id;
         this.uuid = uuid;
         this.name = anytodo;
         this.description = desc;
+        this.numberOfLinks = numberOfLinks;
     }
 
     public long getId() {
@@ -51,5 +54,14 @@ public class Anytodo {
     public void setName(String name) {
         this.name = name;
     }
+
+    public long getNumberOfLinks() {
+        return numberOfLinks;
+    }
+
+    public void setNumberOfLinks(long numberOfLinks) {
+        this.numberOfLinks = numberOfLinks;
+    }
+
 
 }
