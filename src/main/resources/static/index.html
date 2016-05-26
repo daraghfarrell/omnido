@@ -15,35 +15,37 @@
 <body>
 <div ng-app="displayText" class="container">
     <h1>Anytodo:</h1>
-    <div ng-controller="home as home" ng-cloak class="ng-cloak">
+    <div ng-controller="home as home" ng-cloak class="ng-cloak" id="viz">
         <p>Id is: {{home.anytodo[0].id}}</p>
         <p>UUID is: {{home.anytodo[0].uuid}}</p>
         <p>Name is: {{home.anytodo[0].name}}</p>
         <p>Description: {{home.anytodo[0].name}}</p>
         <p>Links: {{home.anytodo[0].numberOfLinks}}</p>
+
+        <!--<div id="viz"></div>-->
+            <script type="text/javascript">
+                var anytodo = d3.select("#viz")
+                        .append("svg")
+                        .attr("width", 100)
+                        .attr("height", 100);
+
+                anytodo.append("circle")
+                        .style("stroke", "gray")
+                        .style("fill", "white")
+                        .attr("r", 40)
+                        .attr("cx", 50)
+                        .attr("cy", 50)
+                        .on("mouseover", function(){d3.select(this).style("fill", "aliceblue");})
+                        .on("mouseout", function(){d3.select(this).style("fill", "white");});
+
+                anytodo.append("text")
+                        .attr("dy", "3em")
+                        .attr("dx", "1.75em")
+                        .style("text-anchor", "bottom")
+                        .text("wibble");
+
+            </script>
+        <!--</div>-->
     </div>
-
-    <div id="viz"></div>
-    <script type="text/javascript">
-
-        var anytodo = d3.select("#viz")
-                .append("svg")
-                .attr("width", 100)
-                .attr("height", 100);
-
-        anytodo.append("circle")
-                .style("stroke", "gray")
-                .style("fill", "white")
-                .attr("r", 40)
-                .attr("cx", 50)
-                .attr("cy", 50)
-                .on("mouseover", function(){d3.select(this).style("fill", "aliceblue");})
-                .on("mouseout", function(){d3.select(this).style("fill", "white");});
-
-//        anytodo.append("title")
-//                .text({{home.anytodo[0].uuid}});
-    </script>
-</div>
-
 </body>
 </html>
